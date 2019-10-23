@@ -36,8 +36,8 @@ class Song
     genre.songs.push self if not genre.songs.include?(self)
   end
 
-  def self.find_by_name(name)
-
+  def self.find_by_name(fname)
+    all.detect {|song| song.name == fname}
   end
 
 end
