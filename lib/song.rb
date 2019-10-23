@@ -41,7 +41,7 @@ class Song
   end
 
   def self.find_or_create_by_name(fname)
-    
+    find_by_name(fname) || create(fname)
   end
 
 end
