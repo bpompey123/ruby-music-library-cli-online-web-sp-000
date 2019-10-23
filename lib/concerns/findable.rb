@@ -1,4 +1,4 @@
-module Concerns::ModuleName
+module Concerns::Findable
   def find_by_name(name)
     self.all.find{|song_name| song_name.name == name}
   end
