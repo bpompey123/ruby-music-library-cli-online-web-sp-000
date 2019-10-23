@@ -31,7 +31,69 @@ class MusicLibraryController
   end
 
 
-  
+  def list_artists
+    counter = 1
+    ordered_list = Artist.all.sort_by! {|artist| artist.name}
+    ordered_list.each do |artist|
+      puts "#{counter}. #{artist.name}"
+      counter += 1
+    end
+  end
+
+  def list_songs
+    counter = 1
+    ordered_list = Song.all.sort_by! {|song| song.name}
+    ordered_list.each do |song|
+      puts "#{counter}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+      counter += 1
+    end
+  end
+
+  def list_genres
+    counter = 1
+    ordered_list = Genre.all.sort_by! {|song| song.name}
+    ordered_list.each do |genre|
+      puts "#{counter}. #{genre.name}"
+      counter += 1
+    end
+  end
+
+  def list_songs_by_artist
+    puts "Please enter the name of an artist:"
+    input = gets.strip
+
+      if artist = Artist.find_by_name(input)
+        counter = 1
+        artist.songs.sort{|a, b| a.name <=> b.name}.each do |s|
+          puts "#{counter}. #{s.name} - #{s.genre.name}"
+          counter += 1
+        end
+      end
+  end
+
+  def list_songs_by_genre
+    puts "Please enter the name of a genre:"
+    input = gets.strip
+
+    if genre = Genre.find_by_name(input)
+      counter = 1
+      genre.songs.sort{|a, b| a.name <=> b.name}.each do |s|
+          puts "#{counter}. #{s.artist.name} - #{s.name}"
+          counter += 1
+      end
+    end
+  end
+
+  def play_song
+      puts "Which song number would you like to play?"
+      input = gets.strip.to_i
+      if input > 0 && input <= Song.all.length
+        input -= 1
+        ordered_list = Song.all.sort_by! {|song| song.name}
+        play_song = ordered_list.fetch(input)
+        puts "Playing #{play_song.name} by #{play_song.artist.name}"
+      end
+  end
 
 
 
