@@ -33,6 +33,7 @@ class Song
 
   def genre=(genre)
     @genre = genre
+    genre.songs.push self if not genre.songs.include?(self)
   end
 
 end
