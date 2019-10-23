@@ -1,5 +1,5 @@
 class Artist
-  extend Concerns::ModuleName
+  extend Concerns::Findable
   attr_accessor :name, :songs
   @@all = []
 
