@@ -29,4 +29,8 @@ class Genre
     genre
   end
 
+  def artists
+    songs.collect {|song_iterator| song_iterator.artist }.uniq
+  end
+
 end
