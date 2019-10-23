@@ -30,5 +30,9 @@ class Artist
     songs << song if not songs.include?(song)
   end
 
+  def genres
+    songs.collect {|song_iterator| song_iterator.genre }.uniq
+  end
+
 
 end
